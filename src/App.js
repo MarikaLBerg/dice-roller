@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Dice from './Dice';
+import './App.css'; // Импортируем CSS файл для стилизации
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [diceValue, setDiceValue] = useState(1);
+
+    const rollDice = () => {
+        const newValue = Math.floor(Math.random() * 6) + 1; // Генерируем случайное число от 1 до 6
+        setDiceValue(newValue);
+    };
+
+    return (
+        <div className="app">
+            <h1>ИГРАЛЬНАЯ КОСТЬ</h1>
+            <Dice value={diceValue} />
+            <button onClick={rollDice}>БРОСИТЬ КУБИК</button>
+        </div>
+    );
+};
 
 export default App;
